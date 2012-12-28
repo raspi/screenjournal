@@ -1,22 +1,43 @@
-<?xml version='1.0' encoding='windows-1252'?>
-<Wix xmlns='http://schemas.microsoft.com/wix/2006/wi'>
+<?xml version='1.0' encoding='utf-8'?>
 
-  <Product Name='ScreenJournal' Id='f3223d82-3481-4081-b006-e6d0c01ea043' UpgradeCode='bbb50f5a-6b0f-469d-b50e-95323c0f20ee'
-    Language='1033' Codepage='1252' Version='1.0.0' Manufacturer='Pekka Järvinen'>
+<?define ProductShortName = "ScreenJournal" ?>
 
-    <Package Id='*' Keywords='Installer' Description="ScreenJournal Installer" InstallerVersion='100' Languages='1033' Compressed='yes' SummaryCodepage='1252' />
+<Wix 
+xmlns='http://schemas.microsoft.com/wix/2006/wi'
+xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension"
+>
+
+  <Product Name='$(var.ProductShortName)' Id='f3223d82-3481-4081-b006-e6d0c01ea043' UpgradeCode='bbb50f5a-6b0f-469d-b50e-95323c0f20ee'
+    Language='1033' Codepage='1252' Version='1.0.0' Manufacturer='Pekka JÃ¤rvinen'>
+
+    <Package Id='*' Keywords='Installer' Description="$(var.ProductShortName) Installer" InstallerVersion='100' Languages='1033' Compressed='yes' SummaryCodepage='1252' />
 
     <Media Id='1' Cabinet='Data.cab' EmbedCab='yes' DiskPrompt="CD-ROM #1" />
-    <Property Id='DiskPrompt' Value="ScreenJournal Installation [1]" />
+    <Property Id='DiskPrompt' Value="$(var.ProductShortName) Installation [1]" />
+	
+    <!-- Ensure GTK# 2.12.9+ is installed -->
+    <Property Id="GTKSHARPVERSION">
+      <RegistrySearch Id="gsversion" Root="HKLM" Key="SOFTWARE\Novell\GtkSharp\Version" Type="raw" />
+    </Property>
+    <Condition Message="Gtk# version 2.12.9 or greater must be installed.">
+      <![CDATA[GTKSHARPVERSION >= "2.12" OR REMOVE ~= "ALL"]]>
+    </Condition>
+
+    <!-- Ensure .Net 4.0 is installed -->
+    <PropertyRef Id="NETFRAMEWORK40FULL" />
+    <Condition Message="This setup requires the .NET Framework 4.0 to be installed.">
+      Installed OR NETFRAMEWORK40FULL
+    </Condition>
+	
 	
     <Directory Id='TARGETDIR' Name='SourceDir'>
       <Directory Id='ProgramFilesFolder' Name='PFiles'>
-          <Directory Id='INSTALLDIR' Name='ScreenJournal'>
+          <Directory Id='INSTALLDIR' Name='$(var.ProductShortName)'>
 
             <Component Id='MainExecutable' Guid='bad18e67-5f54-4e69-bf95-e5dc66cb285d'>
               <File Id='ScreenJournalEXE' Name='ScreenJournal.exe' DiskId='1' Source='ScreenJournal.exe' KeyPath='yes'>
-                <Shortcut Id="startmenuScreenJournal" Directory="ProgramMenuDir" Name="ScreenJournal" WorkingDirectory='INSTALLDIR' Icon="ScreenJournal.exe" IconIndex="0" Advertise="yes" />
-                <Shortcut Id="desktopScreenJournal" Directory="DesktopFolder" Name="ScreenJournal" WorkingDirectory='INSTALLDIR' Icon="ScreenJournal.exe" IconIndex="0" Advertise="yes" />
+                <Shortcut Id="startmenuScreenJournal" Directory="ProgramMenuDir" Name="$(var.ProductShortName)" WorkingDirectory='INSTALLDIR' Icon="ScreenJournal.exe" IconIndex="0" Advertise="yes" />
+                <Shortcut Id="desktopScreenJournal" Directory="DesktopFolder" Name="$(var.ProductShortName)" WorkingDirectory='INSTALLDIR' Icon="ScreenJournal.exe" IconIndex="0" Advertise="yes" />
               </File>
             </Component>
 
@@ -24,7 +45,7 @@
       </Directory>
 
       <Directory Id="ProgramMenuFolder" Name="Programs">
-        <Directory Id="ProgramMenuDir" Name="ScreenJournal">
+        <Directory Id="ProgramMenuDir" Name="$(var.ProductShortName)">
           <Component Id="ProgramMenuDir" Guid="bf039930-c9de-442e-9da4-a1fbd1f7eacf">
             <RemoveFolder Id='ProgramMenuDir' On='uninstall' />
             <RegistryValue Root='HKCU' Key='Software\[Manufacturer]\[ProductName]' Type='string' Value='' KeyPath='yes' />
@@ -35,12 +56,16 @@
       <Directory Id="DesktopFolder" Name="Desktop" />
     </Directory>
 
-    <Feature Id='Complete' Level='1'>
+    <Feature Id='Complete' Level='1'  ConfigurableDirectory='INSTALLDIR' Title='$(var.ProductShortName)' Description='$(var.ProductShortName)' Display='expand'>
       <ComponentRef Id='MainExecutable' />
       <ComponentRef Id='ProgramMenuDir' />
     </Feature>
 
     <Icon Id="ScreenJournal.exe" SourceFile="ScreenJournal.exe" />
 
+    <Property Id="WIXUI_INSTALLDIR">INSTALLLOCATION</Property>
+    <UIRef Id="WixUI_Mondo" />
+    <UIRef Id="WixUI_ErrorProgressText" />	
+	
   </Product>
 </Wix>

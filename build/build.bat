@@ -12,10 +12,10 @@ copy screenjournal\bin\Release\screenjournal.exe build
 cd build
 
 echo Generating WIX Object..
-candle installer.wxs
+candle -ext WiXNetFxExtension installer.wxs
 
 echo Generating MSI file..
-light installer.wixobj
+light -ext WixUIExtension -ext WiXNetFxExtension installer.wixobj
 
 del screenjournal.exe
 del installer.wixobj
@@ -25,6 +25,7 @@ copy installer.msi screenjournal-installer.msi
 
 del installer.msi
 
+echo.
 echo All done.
 
 pause > nul
