@@ -5,6 +5,9 @@ using System.Timers;
 
 namespace screenjournal
 {
+	/// <summary>
+	/// Settings for snapshotter
+	/// </summary>
 	public class settings
 	{
 		/// <summary>
@@ -18,6 +21,9 @@ namespace screenjournal
 		public int interval {get; set;}
 	}
 
+	/// <summary>
+	/// Main snapshotter class
+	/// </summary>
 	public class snapshotter
 	{
 
@@ -37,7 +43,9 @@ namespace screenjournal
 
 		protected string lastFileName = String.Empty;
 
-
+		/// <summary>
+		/// Constructor
+		/// </summary>
 		public snapshotter ()
 		{
 			// Initialize timer

@@ -22,13 +22,16 @@ public partial class MainWindow: Gtk.Window
 
 	protected void OnRunbuttonClicked (object sender, EventArgs e)
 	{
+
 		if(!ss.isRunning)
 		{
 			ss.runThread();
+			runbutton.Label = "Recording...";
 		}
 		else
 		{
 			ss.stopThread();
+			runbutton.Label = "Start recording";
 		}
 	}
 }
