@@ -22,6 +22,13 @@ public partial class MainWindow: Gtk.Window
 
 	protected void OnRunbuttonClicked (object sender, EventArgs e)
 	{
-		ss.takeSnapShot();
+		if(!ss.isRunning)
+		{
+			ss.runThread();
+		}
+		else
+		{
+			ss.stopThread();
+		}
 	}
 }
