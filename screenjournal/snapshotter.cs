@@ -2,6 +2,13 @@ using System;
 using System.Reflection;
 using System.IO;
 using System.Timers;
+using System.Collections.Specialized;
+using System.Configuration;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Collections;
+using System.Diagnostics;
 
 namespace screenjournal
 {
@@ -56,12 +63,12 @@ namespace screenjournal
 
 		protected settings getSettings()
 		{
-			//AppDomain.CurrentDomain.SetupInformation.ConfigurationFile = "settings.json";
+			var config = AppCfg.MapExeConfiguration();
 
 			settings settings = new settings();
 
-			settings.interval = 10;
-			settings.directory = Environment.GetFolderPath(System.Environment.SpecialFolder.MyPictures) + "\\" + Assembly.GetEntryAssembly().GetName().Name;
+			settings.interval = config.ConfigElement.interval;
+			settings.directory = config.ConfigElement.directory;
 
 			return settings;
 		}
@@ -69,8 +76,11 @@ namespace screenjournal
 		public void runThread()
 		{
 			settings settings = getSettings();
+
 			timer.Interval = settings.interval * 1000;
 			timer.Enabled = true;
+
+			takeSnapShot();
 		}
 
 		public void stopThread()
