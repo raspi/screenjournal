@@ -11,8 +11,11 @@
   <widget class="Gtk.Window" id="MainWindow" design-size="400 300">
     <action-group name="Default" />
     <property name="MemberName" />
-    <property name="Title" translatable="yes">MainWindow</property>
+    <property name="Title" translatable="yes">ScreenJournal</property>
+    <property name="Icon">stock:gtk-media-record Menu</property>
     <property name="WindowPosition">CenterOnParent</property>
+    <property name="DefaultWidth">640</property>
+    <property name="DefaultHeight">480</property>
     <signal name="DeleteEvent" handler="OnDeleteEvent" />
     <child>
       <widget class="Gtk.VBox" id="vbox1">
