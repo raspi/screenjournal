@@ -1,5 +1,13 @@
 *.userprefs
 
+
+build/*.wixobj
+build/*.wixpdb
+build/*.msi
+build/paths.bat
+
+screenjournal/bin/*
+
 #################
 ## Eclipse
 #################
@@ -139,7 +147,6 @@ Desktop.ini
 *.egg
 *.egg-info
 dist
-build
 eggs
 parts
 bin

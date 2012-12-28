@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='windows-1252'?>
+<Wix xmlns='http://schemas.microsoft.com/wix/2006/wi'>
+
+  <Product Name='ScreenJournal' Id='f3223d82-3481-4081-b006-e6d0c01ea043' UpgradeCode='bbb50f5a-6b0f-469d-b50e-95323c0f20ee'
+    Language='1033' Codepage='1252' Version='1.0.0' Manufacturer='Pekka Järvinen'>
+
+    <Package Id='*' Keywords='Installer' Description="ScreenJournal Installer" InstallerVersion='100' Languages='1033' Compressed='yes' SummaryCodepage='1252' />
+
+    <Media Id='1' Cabinet='Data.cab' EmbedCab='yes' DiskPrompt="CD-ROM #1" />
+    <Property Id='DiskPrompt' Value="ScreenJournal Installation [1]" />
+	
+    <Directory Id='TARGETDIR' Name='SourceDir'>
+      <Directory Id='ProgramFilesFolder' Name='PFiles'>
+          <Directory Id='INSTALLDIR' Name='ScreenJournal'>
+
+            <Component Id='MainExecutable' Guid='bad18e67-5f54-4e69-bf95-e5dc66cb285d'>
+              <File Id='ScreenJournalEXE' Name='ScreenJournal.exe' DiskId='1' Source='ScreenJournal.exe' KeyPath='yes'>
+                <Shortcut Id="startmenuScreenJournal" Directory="ProgramMenuDir" Name="ScreenJournal" WorkingDirectory='INSTALLDIR' Icon="ScreenJournal.exe" IconIndex="0" Advertise="yes" />
+                <Shortcut Id="desktopScreenJournal" Directory="DesktopFolder" Name="ScreenJournal" WorkingDirectory='INSTALLDIR' Icon="ScreenJournal.exe" IconIndex="0" Advertise="yes" />
+              </File>
+            </Component>
+
+        </Directory>
+      </Directory>
+
+      <Directory Id="ProgramMenuFolder" Name="Programs">
+        <Directory Id="ProgramMenuDir" Name="ScreenJournal">
+          <Component Id="ProgramMenuDir" Guid="bf039930-c9de-442e-9da4-a1fbd1f7eacf">
+            <RemoveFolder Id='ProgramMenuDir' On='uninstall' />
+            <RegistryValue Root='HKCU' Key='Software\[Manufacturer]\[ProductName]' Type='string' Value='' KeyPath='yes' />
+          </Component>
+        </Directory>
+      </Directory>
+
+      <Directory Id="DesktopFolder" Name="Desktop" />
+    </Directory>
+
+    <Feature Id='Complete' Level='1'>
+      <ComponentRef Id='MainExecutable' />
+      <ComponentRef Id='ProgramMenuDir' />
+    </Feature>
+
+    <Icon Id="ScreenJournal.exe" SourceFile="ScreenJournal.exe" />
+
+  </Product>
+</Wix>
