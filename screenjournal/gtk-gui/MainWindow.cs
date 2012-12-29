@@ -29,6 +29,8 @@ public partial class MainWindow
 		global::Gtk.ActionGroup w1 = new global::Gtk.ActionGroup ("Default");
 		this.UIManager.InsertActionGroup (w1, 0);
 		this.AddAccelGroup (this.UIManager.AccelGroup);
+		this.WidthRequest = 640;
+		this.HeightRequest = 480;
 		this.Name = "MainWindow";
 		this.Title = global::Mono.Unix.Catalog.GetString ("ScreenJournal");
 		this.Icon = global::Stetic.IconLoader.LoadIcon (this, "gtk-media-record", global::Gtk.IconSize.Menu);
@@ -38,26 +40,25 @@ public partial class MainWindow
 		// Container child MainWindow.Gtk.Container+ContainerChild
 		this.vbox1 = new global::Gtk.VBox ();
 		this.vbox1.Name = "vbox1";
-		this.vbox1.Spacing = 1;
+		this.vbox1.Spacing = 0;
+		this.vbox1.BorderWidth = ((uint)(2));
 		// Container child vbox1.Gtk.Box+BoxChild
 		this.notebook1 = new global::Gtk.Notebook ();
 		this.notebook1.CanFocus = true;
 		this.notebook1.Name = "notebook1";
-		this.notebook1.CurrentPage = 1;
+		this.notebook1.CurrentPage = 0;
 		// Container child notebook1.Gtk.Notebook+NotebookChild
 		this.vbox3 = new global::Gtk.VBox ();
 		this.vbox3.Name = "vbox3";
 		this.vbox3.Spacing = 6;
 		// Container child vbox3.Gtk.Box+BoxChild
 		this.runbutton = new global::Gtk.Button ();
-		this.runbutton.CanFocus = true;
 		this.runbutton.Name = "runbutton";
 		this.runbutton.UseUnderline = true;
 		// Container child runbutton.Gtk.Container+ContainerChild
 		global::Gtk.Alignment w2 = new global::Gtk.Alignment (0.5F, 0.5F, 0F, 0F);
 		// Container child GtkAlignment.Gtk.Container+ContainerChild
 		global::Gtk.HBox w3 = new global::Gtk.HBox ();
-		w3.Spacing = 2;
 		// Container child GtkHBox.Gtk.Container+ContainerChild
 		global::Gtk.Image w4 = new global::Gtk.Image ();
 		w4.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-media-record", global::Gtk.IconSize.Button);
@@ -85,15 +86,19 @@ public partial class MainWindow
 		// Container child notebook1.Gtk.Notebook+NotebookChild
 		this.vbox2 = new global::Gtk.VBox ();
 		this.vbox2.Name = "vbox2";
-		this.vbox2.Spacing = 6;
+		this.vbox2.Spacing = 0;
+		this.vbox2.BorderWidth = ((uint)(2));
 		// Container child vbox2.Gtk.Box+BoxChild
 		this.hbox2 = new global::Gtk.HBox ();
 		this.hbox2.Name = "hbox2";
-		this.hbox2.Spacing = 6;
+		this.hbox2.Homogeneous = true;
+		this.hbox2.Spacing = 0;
+		this.hbox2.BorderWidth = ((uint)(2));
 		// Container child hbox2.Gtk.Box+BoxChild
 		this.label3 = new global::Gtk.Label ();
 		this.label3.Name = "label3";
 		this.label3.LabelProp = global::Mono.Unix.Catalog.GetString ("Image save directory");
+		this.label3.Justify = ((global::Gtk.Justification)(1));
 		this.hbox2.Add (this.label3);
 		global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.label3]));
 		w12.Position = 0;
@@ -107,7 +112,7 @@ public partial class MainWindow
 		this.directorybox.InvisibleChar = '●';
 		this.hbox2.Add (this.directorybox);
 		global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.directorybox]));
-		w13.Position = 2;
+		w13.Position = 1;
 		this.vbox2.Add (this.hbox2);
 		global::Gtk.Box.BoxChild w14 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.hbox2]));
 		w14.Position = 0;
@@ -116,11 +121,14 @@ public partial class MainWindow
 		// Container child vbox2.Gtk.Box+BoxChild
 		this.hbox3 = new global::Gtk.HBox ();
 		this.hbox3.Name = "hbox3";
-		this.hbox3.Spacing = 6;
+		this.hbox3.Homogeneous = true;
+		this.hbox3.Spacing = 0;
+		this.hbox3.BorderWidth = ((uint)(2));
 		// Container child hbox3.Gtk.Box+BoxChild
 		this.label4 = new global::Gtk.Label ();
 		this.label4.Name = "label4";
 		this.label4.LabelProp = global::Mono.Unix.Catalog.GetString ("Interval (seconds)");
+		this.label4.Justify = ((global::Gtk.Justification)(1));
 		this.hbox3.Add (this.label4);
 		global::Gtk.Box.BoxChild w15 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.label4]));
 		w15.Position = 0;
@@ -135,7 +143,7 @@ public partial class MainWindow
 		this.intervalbox.InvisibleChar = '●';
 		this.hbox3.Add (this.intervalbox);
 		global::Gtk.Box.BoxChild w16 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.intervalbox]));
-		w16.Position = 2;
+		w16.Position = 1;
 		this.vbox2.Add (this.hbox3);
 		global::Gtk.Box.BoxChild w17 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.hbox3]));
 		w17.Position = 1;
@@ -150,7 +158,6 @@ public partial class MainWindow
 		global::Gtk.Alignment w18 = new global::Gtk.Alignment (0.5F, 0.5F, 0F, 0F);
 		// Container child GtkAlignment.Gtk.Container+ContainerChild
 		global::Gtk.HBox w19 = new global::Gtk.HBox ();
-		w19.Spacing = 2;
 		// Container child GtkHBox.Gtk.Container+ContainerChild
 		global::Gtk.Image w20 = new global::Gtk.Image ();
 		w20.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-apply", global::Gtk.IconSize.Menu);
@@ -164,6 +171,7 @@ public partial class MainWindow
 		this.savesettingsbutton.Add (w18);
 		this.vbox2.Add (this.savesettingsbutton);
 		global::Gtk.Box.BoxChild w26 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.savesettingsbutton]));
+		w26.PackType = ((global::Gtk.PackType)(1));
 		w26.Position = 2;
 		w26.Expand = false;
 		w26.Fill = false;
@@ -181,7 +189,6 @@ public partial class MainWindow
 		w28.Position = 0;
 		// Container child vbox1.Gtk.Box+BoxChild
 		this.statusbar1 = new global::Gtk.Statusbar ();
-		this.statusbar1.Name = "statusbar1";
 		this.statusbar1.Spacing = 1;
 		// Container child statusbar1.Gtk.Box+BoxChild
 		this.statusbarlabel = new global::Gtk.Label ();

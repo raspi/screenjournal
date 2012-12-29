@@ -6,11 +6,13 @@
   </configuration>
   <import>
     <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
-    <widget-library name="../bin/Debug/screenjournal.exe" internal="true" />
+    <widget-library name="../bin/Release/screenjournal.exe" internal="true" />
   </import>
-  <widget class="Gtk.Window" id="MainWindow" design-size="400 300">
+  <widget class="Gtk.Window" id="MainWindow" design-size="640 480">
     <action-group name="Default" />
     <property name="MemberName" />
+    <property name="WidthRequest">640</property>
+    <property name="HeightRequest">480</property>
     <property name="Title" translatable="yes">ScreenJournal</property>
     <property name="Icon">stock:gtk-media-record Menu</property>
     <property name="WindowPosition">CenterOnParent</property>
@@ -19,12 +21,13 @@
     <child>
       <widget class="Gtk.VBox" id="vbox1">
         <property name="MemberName" />
-        <property name="Spacing">1</property>
+        <property name="Spacing">0</property>
+        <property name="BorderWidth">2</property>
         <child>
           <widget class="Gtk.Notebook" id="notebook1">
             <property name="MemberName" />
             <property name="CanFocus">True</property>
-            <property name="CurrentPage">1</property>
+            <property name="CurrentPage">0</property>
             <child>
               <widget class="Gtk.VBox" id="vbox3">
                 <property name="MemberName" />
@@ -32,7 +35,6 @@
                 <child>
                   <widget class="Gtk.Button" id="runbutton">
                     <property name="MemberName" />
-                    <property name="CanFocus">True</property>
                     <property name="Type">TextAndIcon</property>
                     <property name="Icon">stock:gtk-media-record Button</property>
                     <property name="Label" translatable="yes">Start recording</property>
@@ -68,15 +70,19 @@
             <child>
               <widget class="Gtk.VBox" id="vbox2">
                 <property name="MemberName" />
-                <property name="Spacing">6</property>
+                <property name="Spacing">0</property>
+                <property name="BorderWidth">2</property>
                 <child>
                   <widget class="Gtk.HBox" id="hbox2">
                     <property name="MemberName" />
-                    <property name="Spacing">6</property>
+                    <property name="Homogeneous">True</property>
+                    <property name="Spacing">0</property>
+                    <property name="BorderWidth">2</property>
                     <child>
                       <widget class="Gtk.Label" id="label3">
                         <property name="MemberName" />
                         <property name="LabelProp" translatable="yes">Image save directory</property>
+                        <property name="Justify">Right</property>
                       </widget>
                       <packing>
                         <property name="Position">0</property>
@@ -86,9 +92,6 @@
                       </packing>
                     </child>
                     <child>
-                      <placeholder />
-                    </child>
-                    <child>
                       <widget class="Gtk.Entry" id="directorybox">
                         <property name="MemberName" />
                         <property name="CanFocus">True</property>
@@ -96,7 +99,7 @@
                         <property name="InvisibleChar">●</property>
                       </widget>
                       <packing>
-                        <property name="Position">2</property>
+                        <property name="Position">1</property>
                         <property name="AutoSize">True</property>
                       </packing>
                     </child>
@@ -111,11 +114,14 @@
                 <child>
                   <widget class="Gtk.HBox" id="hbox3">
                     <property name="MemberName" />
-                    <property name="Spacing">6</property>
+                    <property name="Homogeneous">True</property>
+                    <property name="Spacing">0</property>
+                    <property name="BorderWidth">2</property>
                     <child>
                       <widget class="Gtk.Label" id="label4">
                         <property name="MemberName" />
                         <property name="LabelProp" translatable="yes">Interval (seconds)</property>
+                        <property name="Justify">Right</property>
                       </widget>
                       <packing>
                         <property name="Position">0</property>
@@ -123,9 +129,6 @@
                         <property name="Expand">False</property>
                         <property name="Fill">False</property>
                       </packing>
-                    </child>
-                    <child>
-                      <placeholder />
                     </child>
                     <child>
                       <widget class="Gtk.Entry" id="intervalbox">
@@ -136,7 +139,7 @@
                         <property name="InvisibleChar">●</property>
                       </widget>
                       <packing>
-                        <property name="Position">2</property>
+                        <property name="Position">1</property>
                         <property name="AutoSize">True</property>
                       </packing>
                     </child>
@@ -159,6 +162,7 @@
                     <signal name="Clicked" handler="OnSavesettingsbuttonClicked" />
                   </widget>
                   <packing>
+                    <property name="PackType">End</property>
                     <property name="Position">2</property>
                     <property name="AutoSize">True</property>
                     <property name="Expand">False</property>
