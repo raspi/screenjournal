@@ -16,7 +16,6 @@
     <property name="WindowPosition">CenterOnParent</property>
     <property name="DefaultWidth">640</property>
     <property name="DefaultHeight">480</property>
-    <signal name="DeleteEvent" handler="OnDeleteEvent" />
     <child>
       <widget class="Gtk.VBox" id="vbox1">
         <property name="MemberName" />
@@ -25,7 +24,7 @@
           <widget class="Gtk.Notebook" id="notebook1">
             <property name="MemberName" />
             <property name="CanFocus">True</property>
-            <property name="CurrentPage">0</property>
+            <property name="CurrentPage">1</property>
             <child>
               <widget class="Gtk.VBox" id="vbox3">
                 <property name="MemberName" />
@@ -58,6 +57,8 @@
             <child>
               <widget class="Gtk.Label" id="runtab">
                 <property name="MemberName" />
+                <property name="CanDefault">True</property>
+                <property name="HasDefault">True</property>
                 <property name="LabelProp" translatable="yes">Run</property>
               </widget>
               <packing>
@@ -127,7 +128,7 @@
                       <placeholder />
                     </child>
                     <child>
-                      <widget class="Gtk.Entry" id="timeintervalbox">
+                      <widget class="Gtk.Entry" id="intervalbox">
                         <property name="MemberName" />
                         <property name="CanFocus">True</property>
                         <property name="Text" translatable="yes">300</property>
@@ -155,6 +156,7 @@
                     <property name="Icon">stock:gtk-apply Menu</property>
                     <property name="Label" translatable="yes">Save settings</property>
                     <property name="UseUnderline">True</property>
+                    <signal name="Clicked" handler="OnSavesettingsbuttonClicked" />
                   </widget>
                   <packing>
                     <property name="Position">2</property>
@@ -189,10 +191,16 @@
             <property name="Tooltip" translatable="yes" />
             <property name="Spacing">1</property>
             <child>
-              <placeholder />
-            </child>
-            <child>
-              <placeholder />
+              <widget class="Gtk.Label" id="statusbarlabel">
+                <property name="MemberName" />
+                <property name="Wrap">True</property>
+              </widget>
+              <packing>
+                <property name="Position">0</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
             </child>
           </widget>
           <packing>

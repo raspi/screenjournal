@@ -15,10 +15,11 @@ public partial class MainWindow
 	private global::Gtk.Entry directorybox;
 	private global::Gtk.HBox hbox3;
 	private global::Gtk.Label label4;
-	private global::Gtk.Entry timeintervalbox;
+	private global::Gtk.Entry intervalbox;
 	private global::Gtk.Button savesettingsbutton;
 	private global::Gtk.Label settingstab;
 	private global::Gtk.Statusbar statusbar1;
+	private global::Gtk.Label statusbarlabel;
 	
 	protected virtual void Build ()
 	{
@@ -42,7 +43,7 @@ public partial class MainWindow
 		this.notebook1 = new global::Gtk.Notebook ();
 		this.notebook1.CanFocus = true;
 		this.notebook1.Name = "notebook1";
-		this.notebook1.CurrentPage = 0;
+		this.notebook1.CurrentPage = 1;
 		// Container child notebook1.Gtk.Notebook+NotebookChild
 		this.vbox3 = new global::Gtk.VBox ();
 		this.vbox3.Name = "vbox3";
@@ -76,6 +77,7 @@ public partial class MainWindow
 		this.notebook1.Add (this.vbox3);
 		// Notebook tab
 		this.runtab = new global::Gtk.Label ();
+		this.runtab.CanDefault = true;
 		this.runtab.Name = "runtab";
 		this.runtab.LabelProp = global::Mono.Unix.Catalog.GetString ("Run");
 		this.notebook1.SetTabLabel (this.vbox3, this.runtab);
@@ -125,14 +127,14 @@ public partial class MainWindow
 		w15.Expand = false;
 		w15.Fill = false;
 		// Container child hbox3.Gtk.Box+BoxChild
-		this.timeintervalbox = new global::Gtk.Entry ();
-		this.timeintervalbox.CanFocus = true;
-		this.timeintervalbox.Name = "timeintervalbox";
-		this.timeintervalbox.Text = global::Mono.Unix.Catalog.GetString ("300");
-		this.timeintervalbox.IsEditable = true;
-		this.timeintervalbox.InvisibleChar = '●';
-		this.hbox3.Add (this.timeintervalbox);
-		global::Gtk.Box.BoxChild w16 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.timeintervalbox]));
+		this.intervalbox = new global::Gtk.Entry ();
+		this.intervalbox.CanFocus = true;
+		this.intervalbox.Name = "intervalbox";
+		this.intervalbox.Text = global::Mono.Unix.Catalog.GetString ("300");
+		this.intervalbox.IsEditable = true;
+		this.intervalbox.InvisibleChar = '●';
+		this.hbox3.Add (this.intervalbox);
+		global::Gtk.Box.BoxChild w16 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.intervalbox]));
 		w16.Position = 2;
 		this.vbox2.Add (this.hbox3);
 		global::Gtk.Box.BoxChild w17 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.hbox3]));
@@ -181,17 +183,27 @@ public partial class MainWindow
 		this.statusbar1 = new global::Gtk.Statusbar ();
 		this.statusbar1.Name = "statusbar1";
 		this.statusbar1.Spacing = 1;
-		this.vbox1.Add (this.statusbar1);
-		global::Gtk.Box.BoxChild w29 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.statusbar1]));
-		w29.Position = 1;
+		// Container child statusbar1.Gtk.Box+BoxChild
+		this.statusbarlabel = new global::Gtk.Label ();
+		this.statusbarlabel.Name = "statusbarlabel";
+		this.statusbarlabel.Wrap = true;
+		this.statusbar1.Add (this.statusbarlabel);
+		global::Gtk.Box.BoxChild w29 = ((global::Gtk.Box.BoxChild)(this.statusbar1 [this.statusbarlabel]));
+		w29.Position = 0;
 		w29.Expand = false;
 		w29.Fill = false;
+		this.vbox1.Add (this.statusbar1);
+		global::Gtk.Box.BoxChild w30 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.statusbar1]));
+		w30.Position = 1;
+		w30.Expand = false;
+		w30.Fill = false;
 		this.Add (this.vbox1);
 		if ((this.Child != null)) {
 			this.Child.ShowAll ();
 		}
+		this.runtab.HasDefault = true;
 		this.Show ();
-		this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
 		this.runbutton.Clicked += new global::System.EventHandler (this.OnRunbuttonClicked);
+		this.savesettingsbutton.Clicked += new global::System.EventHandler (this.OnSavesettingsbuttonClicked);
 	}
 }

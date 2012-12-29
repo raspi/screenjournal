@@ -62,22 +62,30 @@ namespace screenjournal
 
 	public static class AppCfg
 	{
+		static readonly string sectionName = "cfg";
 
-		public static ApplicationConfigSection MapExeConfiguration()
+		public static Configuration getConfiguration()
 		{
-			var configFile = Environment.GetFolderPath(System.Environment.SpecialFolder.LocalApplicationData) + "\\" + Assembly.GetEntryAssembly().GetName().Name + ".config";
-
+			string configFile = Environment.GetFolderPath(System.Environment.SpecialFolder.LocalApplicationData) + "\\" + Assembly.GetEntryAssembly().GetName().Name + ".config";
+			
 			if(!File.Exists(configFile))
 			{
 				File.Create(configFile);
 			}
+			
+			return ConfigurationManager.OpenExeConfiguration(configFile);
 
-			Configuration config = ConfigurationManager.OpenExeConfiguration(configFile);
-			string sectionName = "cfg";
+		}
+
+
+		public static ApplicationConfigSection LoadConfiguration()
+		{
+			var config = getConfiguration();
+
 			ApplicationConfigSection customSection = (ApplicationConfigSection)config.GetSection(sectionName);
 			customSection =	(ApplicationConfigSection)config.GetSection(sectionName);
 
-			string defaultDirectory = Environment.GetFolderPath(System.Environment.SpecialFolder.MyPictures) + "\\" + Assembly.GetEntryAssembly().GetName().Name;
+			string defaultDirectory = Path.Combine(Environment.GetFolderPath(System.Environment.SpecialFolder.MyPictures), Assembly.GetEntryAssembly().GetName().Name);
 
 			bool modified = false;
 
@@ -85,9 +93,14 @@ namespace screenjournal
 			{
 				// Generate default values
 				modified = true;
+
+				// Generate the default directory to user's Pictures directory
+				Directory.CreateDirectory(defaultDirectory);
+
 				customSection = new ApplicationConfigSection();
 				customSection.ConfigElement.interval = 300;
 				customSection.ConfigElement.directory = defaultDirectory;
+
 			}
 
 			if (!Directory.Exists(customSection.ConfigElement.directory))
@@ -111,6 +124,16 @@ namespace screenjournal
 			}
 
 			return customSection;
+
+		}
+
+		public static void SaveConfiguration(ApplicationConfigSection section)
+		{
+			var config = getConfiguration();
+
+			config.Sections.Remove(sectionName);
+			config.Sections.Add(sectionName, section);
+			config.Save(ConfigurationSaveMode.Modified);
 
 		}
 		

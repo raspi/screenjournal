@@ -33,6 +33,7 @@ namespace screenjournal
 	/// </summary>
 	public class snapshotter
 	{
+		public settings settings;
 
 		/// <summary>
 		/// Gets or sets a value indicating whether this <see cref="screenjournal.snapshotter"/> is running.
@@ -55,28 +56,16 @@ namespace screenjournal
 		/// </summary>
 		public snapshotter ()
 		{
+			settings = new settings();
+
 			// Initialize timer
 			timer = new System.Timers.Timer();
 			timer.Enabled = false;
 			timer.Elapsed += new ElapsedEventHandler(onTakeSnapShot);
 		}
 
-		protected settings getSettings()
-		{
-			var config = AppCfg.MapExeConfiguration();
-
-			settings settings = new settings();
-
-			settings.interval = config.ConfigElement.interval;
-			settings.directory = config.ConfigElement.directory;
-
-			return settings;
-		}
-
 		public void runThread()
 		{
-			settings settings = getSettings();
-
 			timer.Interval = settings.interval * 1000;
 			timer.Enabled = true;
 
@@ -93,10 +82,11 @@ namespace screenjournal
 			takeSnapShot();
 		}
 
+		/// <summary>
+		/// Take screenshot and save it as PNG image to defined directory
+		/// </summary>
 		public void takeSnapShot()
 		{
-
-			var settings = getSettings();
 
 			Gdk.Window window = Gdk.Global.DefaultRootWindow;
 
