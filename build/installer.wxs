@@ -63,9 +63,11 @@ xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension"
 
     <Icon Id="ScreenJournal.exe" SourceFile="ScreenJournal.exe" />
 
-    <Property Id="WIXUI_INSTALLDIR">INSTALLLOCATION</Property>
+    <Property Id="WIXUI_INSTALLDIR">INSTALLDIR</Property>
     <UIRef Id="WixUI_Mondo" />
     <UIRef Id="WixUI_ErrorProgressText" />	
+	
+	<WixVariable Id="WixUILicenseRtf" Value="..\LICENSE.rtf" />
 	
   </Product>
 </Wix>
