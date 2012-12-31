@@ -48,12 +48,14 @@ public partial class MainWindow: Gtk.Window
 		if(!ss.isRunning)
 		{
 			ss.runThread();
-			runbutton.Label = "Recording...";
+			runbutton.Hide();
+			runbuttonrunning.Show();
 		}
 		else
 		{
 			ss.stopThread();
-			runbutton.Label = "Start recording";
+			runbuttonrunning.Hide();
+			runbutton.Show();
 		}
 	}
 

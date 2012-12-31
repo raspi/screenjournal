@@ -26,7 +26,7 @@
           <widget class="Gtk.Notebook" id="notebook1">
             <property name="MemberName" />
             <property name="CanFocus">True</property>
-            <property name="CurrentPage">1</property>
+            <property name="CurrentPage">0</property>
             <child>
               <widget class="Gtk.VBox" id="vboxrun">
                 <property name="MemberName" />
@@ -35,7 +35,7 @@
                   <widget class="Gtk.Button" id="runbutton">
                     <property name="MemberName" />
                     <property name="Type">TextAndIcon</property>
-                    <property name="Icon">stock:gtk-media-record Button</property>
+                    <property name="Icon">stock:gtk-media-stop Button</property>
                     <property name="Label" translatable="yes">Start recording</property>
                     <property name="UseUnderline">True</property>
                     <signal name="Clicked" handler="OnRunbuttonClicked" />
@@ -48,7 +48,21 @@
                   </packing>
                 </child>
                 <child>
-                  <placeholder />
+                  <widget class="Gtk.Button" id="runbuttonrunning">
+                    <property name="MemberName" />
+                    <property name="Visible">False</property>
+                    <property name="Type">TextAndIcon</property>
+                    <property name="Icon">stock:gtk-media-record Button</property>
+                    <property name="Label" translatable="yes">Stop recording</property>
+                    <property name="UseUnderline">True</property>
+                    <signal name="Clicked" handler="OnRunbuttonClicked" />
+                  </widget>
+                  <packing>
+                    <property name="Position">1</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
                 </child>
                 <child>
                   <placeholder />
