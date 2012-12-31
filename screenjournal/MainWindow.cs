@@ -31,7 +31,7 @@ public partial class MainWindow: Gtk.Window
 		// Update UI
 
 		directorybox.Text = config.ConfigElement.directory;
-		intervalbox.Text = config.ConfigElement.interval.ToString();
+		intervalbox.Value = config.ConfigElement.interval;
 		folderchooserbutton.SetCurrentFolder(config.ConfigElement.directory);
 
 	}
@@ -64,7 +64,7 @@ public partial class MainWindow: Gtk.Window
 		ApplicationConfigSection settings = new ApplicationConfigSection();
 
 		settings.ConfigElement.directory = directorybox.Text;
-		settings.ConfigElement.interval = Convert.ToInt32(intervalbox.Text);
+		settings.ConfigElement.interval = intervalbox.ValueAsInt;
 
 		AppCfg.SaveConfiguration(settings);
 

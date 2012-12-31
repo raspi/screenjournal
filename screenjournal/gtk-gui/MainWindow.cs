@@ -12,12 +12,13 @@ public partial class MainWindow
 	private global::Gtk.Label runtab;
 	private global::Gtk.VBox vboxsettings;
 	private global::Gtk.HBox hbox2;
-	private global::Gtk.Label label3;
-	private global::Gtk.Entry directorybox;
+	private global::Gtk.HBox hbox1;
 	private global::Gtk.FileChooserButton folderchooserbutton;
+	private global::Gtk.Entry directorybox;
+	private global::Gtk.Label label3;
 	private global::Gtk.HBox hbox3;
 	private global::Gtk.Label label4;
-	private global::Gtk.Entry intervalbox;
+	private global::Gtk.SpinButton intervalbox;
 	private global::Gtk.Button savesettingsbutton;
 	private global::Gtk.Label settingstab;
 	private global::Gtk.Statusbar statusbar1;
@@ -47,7 +48,7 @@ public partial class MainWindow
 		this.notebook1 = new global::Gtk.Notebook ();
 		this.notebook1.CanFocus = true;
 		this.notebook1.Name = "notebook1";
-		this.notebook1.CurrentPage = 0;
+		this.notebook1.CurrentPage = 1;
 		// Container child notebook1.Gtk.Notebook+NotebookChild
 		this.vboxrun = new global::Gtk.VBox ();
 		this.vboxrun.Name = "vboxrun";
@@ -117,99 +118,116 @@ public partial class MainWindow
 		// Container child vboxsettings.Gtk.Box+BoxChild
 		this.hbox2 = new global::Gtk.HBox ();
 		this.hbox2.Name = "hbox2";
-		this.hbox2.Homogeneous = true;
 		this.hbox2.BorderWidth = ((uint)(2));
 		// Container child hbox2.Gtk.Box+BoxChild
-		this.label3 = new global::Gtk.Label ();
-		this.label3.Name = "label3";
-		this.label3.LabelProp = global::Mono.Unix.Catalog.GetString ("Image save directory");
-		this.label3.Justify = ((global::Gtk.Justification)(1));
-		this.hbox2.Add (this.label3);
-		global::Gtk.Box.BoxChild w21 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.label3]));
+		this.hbox1 = new global::Gtk.HBox ();
+		this.hbox1.Name = "hbox1";
+		this.hbox1.Spacing = 6;
+		// Container child hbox1.Gtk.Box+BoxChild
+		this.folderchooserbutton = new global::Gtk.FileChooserButton (global::Mono.Unix.Catalog.GetString ("Select A Folder"), ((global::Gtk.FileChooserAction)(2)));
+		this.folderchooserbutton.WidthRequest = 1;
+		this.folderchooserbutton.Name = "folderchooserbutton";
+		this.hbox1.Add (this.folderchooserbutton);
+		global::Gtk.Box.BoxChild w21 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.folderchooserbutton]));
+		w21.PackType = ((global::Gtk.PackType)(1));
 		w21.Position = 0;
-		w21.Expand = false;
-		w21.Fill = false;
-		// Container child hbox2.Gtk.Box+BoxChild
+		// Container child hbox1.Gtk.Box+BoxChild
 		this.directorybox = new global::Gtk.Entry ();
 		this.directorybox.CanFocus = true;
 		this.directorybox.Name = "directorybox";
 		this.directorybox.IsEditable = true;
 		this.directorybox.InvisibleChar = '●';
-		this.hbox2.Add (this.directorybox);
-		global::Gtk.Box.BoxChild w22 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.directorybox]));
+		this.hbox1.Add (this.directorybox);
+		global::Gtk.Box.BoxChild w22 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.directorybox]));
+		w22.PackType = ((global::Gtk.PackType)(1));
 		w22.Position = 1;
-		// Container child hbox2.Gtk.Box+BoxChild
-		this.folderchooserbutton = new global::Gtk.FileChooserButton (global::Mono.Unix.Catalog.GetString ("Select A Folder"), ((global::Gtk.FileChooserAction)(2)));
-		this.folderchooserbutton.Name = "folderchooserbutton";
-		this.hbox2.Add (this.folderchooserbutton);
-		global::Gtk.Box.BoxChild w23 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.folderchooserbutton]));
+		this.hbox2.Add (this.hbox1);
+		global::Gtk.Box.BoxChild w23 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.hbox1]));
 		w23.PackType = ((global::Gtk.PackType)(1));
-		w23.Position = 2;
-		this.vboxsettings.Add (this.hbox2);
-		global::Gtk.Box.BoxChild w24 = ((global::Gtk.Box.BoxChild)(this.vboxsettings [this.hbox2]));
-		w24.Position = 0;
+		w23.Position = 0;
+		// Container child hbox2.Gtk.Box+BoxChild
+		this.label3 = new global::Gtk.Label ();
+		this.label3.Name = "label3";
+		this.label3.LabelProp = global::Mono.Unix.Catalog.GetString ("Image save directory");
+		this.label3.Justify = ((global::Gtk.Justification)(1));
+		this.label3.SingleLineMode = true;
+		this.hbox2.Add (this.label3);
+		global::Gtk.Box.BoxChild w24 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.label3]));
+		w24.PackType = ((global::Gtk.PackType)(1));
+		w24.Position = 1;
 		w24.Expand = false;
 		w24.Fill = false;
+		this.vboxsettings.Add (this.hbox2);
+		global::Gtk.Box.BoxChild w25 = ((global::Gtk.Box.BoxChild)(this.vboxsettings [this.hbox2]));
+		w25.Position = 0;
+		w25.Expand = false;
+		w25.Fill = false;
 		// Container child vboxsettings.Gtk.Box+BoxChild
 		this.hbox3 = new global::Gtk.HBox ();
 		this.hbox3.Name = "hbox3";
-		this.hbox3.Homogeneous = true;
 		this.hbox3.BorderWidth = ((uint)(2));
 		// Container child hbox3.Gtk.Box+BoxChild
 		this.label4 = new global::Gtk.Label ();
 		this.label4.Name = "label4";
 		this.label4.LabelProp = global::Mono.Unix.Catalog.GetString ("Interval (seconds)");
 		this.label4.Justify = ((global::Gtk.Justification)(1));
+		this.label4.SingleLineMode = true;
 		this.hbox3.Add (this.label4);
-		global::Gtk.Box.BoxChild w25 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.label4]));
-		w25.Position = 0;
-		w25.Expand = false;
-		w25.Fill = false;
+		global::Gtk.Box.BoxChild w26 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.label4]));
+		w26.Position = 0;
+		w26.Expand = false;
+		w26.Fill = false;
 		// Container child hbox3.Gtk.Box+BoxChild
-		this.intervalbox = new global::Gtk.Entry ();
+		this.intervalbox = new global::Gtk.SpinButton (1D, 86400D, 1D);
+		this.intervalbox.WidthRequest = 60;
 		this.intervalbox.CanFocus = true;
 		this.intervalbox.Name = "intervalbox";
-		this.intervalbox.Text = global::Mono.Unix.Catalog.GetString ("300");
-		this.intervalbox.IsEditable = true;
-		this.intervalbox.InvisibleChar = '●';
+		this.intervalbox.Adjustment.PageIncrement = 1D;
+		this.intervalbox.Adjustment.PageSize = 30D;
+		this.intervalbox.ClimbRate = 1D;
+		this.intervalbox.Numeric = true;
+		this.intervalbox.Value = 1D;
 		this.hbox3.Add (this.intervalbox);
-		global::Gtk.Box.BoxChild w26 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.intervalbox]));
-		w26.Position = 1;
-		this.vboxsettings.Add (this.hbox3);
-		global::Gtk.Box.BoxChild w27 = ((global::Gtk.Box.BoxChild)(this.vboxsettings [this.hbox3]));
+		global::Gtk.Box.BoxChild w27 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.intervalbox]));
+		w27.PackType = ((global::Gtk.PackType)(1));
 		w27.Position = 1;
 		w27.Expand = false;
 		w27.Fill = false;
+		this.vboxsettings.Add (this.hbox3);
+		global::Gtk.Box.BoxChild w28 = ((global::Gtk.Box.BoxChild)(this.vboxsettings [this.hbox3]));
+		w28.Position = 1;
+		w28.Expand = false;
+		w28.Fill = false;
 		// Container child vboxsettings.Gtk.Box+BoxChild
 		this.savesettingsbutton = new global::Gtk.Button ();
 		this.savesettingsbutton.CanFocus = true;
 		this.savesettingsbutton.Name = "savesettingsbutton";
 		this.savesettingsbutton.UseUnderline = true;
 		// Container child savesettingsbutton.Gtk.Container+ContainerChild
-		global::Gtk.Alignment w28 = new global::Gtk.Alignment (0.5F, 0.5F, 0F, 0F);
+		global::Gtk.Alignment w29 = new global::Gtk.Alignment (0.5F, 0.5F, 0F, 0F);
 		// Container child GtkAlignment.Gtk.Container+ContainerChild
-		global::Gtk.HBox w29 = new global::Gtk.HBox ();
-		w29.Spacing = 2;
+		global::Gtk.HBox w30 = new global::Gtk.HBox ();
+		w30.Spacing = 2;
 		// Container child GtkHBox.Gtk.Container+ContainerChild
-		global::Gtk.Image w30 = new global::Gtk.Image ();
-		w30.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-apply", global::Gtk.IconSize.Menu);
+		global::Gtk.Image w31 = new global::Gtk.Image ();
+		w31.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-apply", global::Gtk.IconSize.Menu);
+		w30.Add (w31);
+		// Container child GtkHBox.Gtk.Container+ContainerChild
+		global::Gtk.Label w33 = new global::Gtk.Label ();
+		w33.LabelProp = global::Mono.Unix.Catalog.GetString ("Save settings");
+		w33.UseUnderline = true;
+		w30.Add (w33);
 		w29.Add (w30);
-		// Container child GtkHBox.Gtk.Container+ContainerChild
-		global::Gtk.Label w32 = new global::Gtk.Label ();
-		w32.LabelProp = global::Mono.Unix.Catalog.GetString ("Save settings");
-		w32.UseUnderline = true;
-		w29.Add (w32);
-		w28.Add (w29);
-		this.savesettingsbutton.Add (w28);
+		this.savesettingsbutton.Add (w29);
 		this.vboxsettings.Add (this.savesettingsbutton);
-		global::Gtk.Box.BoxChild w36 = ((global::Gtk.Box.BoxChild)(this.vboxsettings [this.savesettingsbutton]));
-		w36.PackType = ((global::Gtk.PackType)(1));
-		w36.Position = 2;
-		w36.Expand = false;
-		w36.Fill = false;
+		global::Gtk.Box.BoxChild w37 = ((global::Gtk.Box.BoxChild)(this.vboxsettings [this.savesettingsbutton]));
+		w37.PackType = ((global::Gtk.PackType)(1));
+		w37.Position = 2;
+		w37.Expand = false;
+		w37.Fill = false;
 		this.notebook1.Add (this.vboxsettings);
-		global::Gtk.Notebook.NotebookChild w37 = ((global::Gtk.Notebook.NotebookChild)(this.notebook1 [this.vboxsettings]));
-		w37.Position = 1;
+		global::Gtk.Notebook.NotebookChild w38 = ((global::Gtk.Notebook.NotebookChild)(this.notebook1 [this.vboxsettings]));
+		w38.Position = 1;
 		// Notebook tab
 		this.settingstab = new global::Gtk.Label ();
 		this.settingstab.Name = "settingstab";
@@ -217,8 +235,8 @@ public partial class MainWindow
 		this.notebook1.SetTabLabel (this.vboxsettings, this.settingstab);
 		this.settingstab.ShowAll ();
 		this.vbox1.Add (this.notebook1);
-		global::Gtk.Box.BoxChild w38 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.notebook1]));
-		w38.Position = 0;
+		global::Gtk.Box.BoxChild w39 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.notebook1]));
+		w39.Position = 0;
 		// Container child vbox1.Gtk.Box+BoxChild
 		this.statusbar1 = new global::Gtk.Statusbar ();
 		this.statusbar1.Name = "statusbar1";
@@ -228,15 +246,15 @@ public partial class MainWindow
 		this.statusbarlabel.Name = "statusbarlabel";
 		this.statusbarlabel.Wrap = true;
 		this.statusbar1.Add (this.statusbarlabel);
-		global::Gtk.Box.BoxChild w39 = ((global::Gtk.Box.BoxChild)(this.statusbar1 [this.statusbarlabel]));
-		w39.Position = 0;
-		w39.Expand = false;
-		w39.Fill = false;
-		this.vbox1.Add (this.statusbar1);
-		global::Gtk.Box.BoxChild w40 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.statusbar1]));
-		w40.Position = 1;
+		global::Gtk.Box.BoxChild w40 = ((global::Gtk.Box.BoxChild)(this.statusbar1 [this.statusbarlabel]));
+		w40.Position = 0;
 		w40.Expand = false;
 		w40.Fill = false;
+		this.vbox1.Add (this.statusbar1);
+		global::Gtk.Box.BoxChild w41 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.statusbar1]));
+		w41.Position = 1;
+		w41.Expand = false;
+		w41.Fill = false;
 		this.Add (this.vbox1);
 		if ((this.Child != null)) {
 			this.Child.ShowAll ();

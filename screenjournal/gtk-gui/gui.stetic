@@ -8,7 +8,7 @@
     <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <widget-library name="../bin/Release/screenjournal.exe" internal="true" />
   </import>
-  <widget class="Gtk.Window" id="MainWindow" design-size="640 480">
+  <widget class="Gtk.Window" id="MainWindow" design-size="822 566">
     <action-group name="Default" />
     <property name="MemberName" />
     <property name="WidthRequest">640</property>
@@ -26,7 +26,7 @@
           <widget class="Gtk.Notebook" id="notebook1">
             <property name="MemberName" />
             <property name="CanFocus">True</property>
-            <property name="CurrentPage">0</property>
+            <property name="CurrentPage">1</property>
             <child>
               <widget class="Gtk.VBox" id="vboxrun">
                 <property name="MemberName" />
@@ -87,44 +87,58 @@
                 <child>
                   <widget class="Gtk.HBox" id="hbox2">
                     <property name="MemberName" />
-                    <property name="Homogeneous">True</property>
                     <property name="BorderWidth">2</property>
+                    <child>
+                      <widget class="Gtk.HBox" id="hbox1">
+                        <property name="MemberName" />
+                        <property name="Spacing">6</property>
+                        <child>
+                          <widget class="Gtk.FileChooserButton" id="folderchooserbutton">
+                            <property name="MemberName" />
+                            <property name="WidthRequest">1</property>
+                            <property name="Title" translatable="yes">Select A Folder</property>
+                            <property name="Action">SelectFolder</property>
+                            <signal name="SelectionChanged" handler="OnFolderchooserbuttonSelectionChanged" />
+                          </widget>
+                          <packing>
+                            <property name="PackType">End</property>
+                            <property name="Position">0</property>
+                            <property name="AutoSize">True</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <widget class="Gtk.Entry" id="directorybox">
+                            <property name="MemberName" />
+                            <property name="CanFocus">True</property>
+                            <property name="IsEditable">True</property>
+                            <property name="InvisibleChar">●</property>
+                          </widget>
+                          <packing>
+                            <property name="PackType">End</property>
+                            <property name="Position">1</property>
+                            <property name="AutoSize">True</property>
+                          </packing>
+                        </child>
+                      </widget>
+                      <packing>
+                        <property name="PackType">End</property>
+                        <property name="Position">0</property>
+                        <property name="AutoSize">True</property>
+                      </packing>
+                    </child>
                     <child>
                       <widget class="Gtk.Label" id="label3">
                         <property name="MemberName" />
                         <property name="LabelProp" translatable="yes">Image save directory</property>
                         <property name="Justify">Right</property>
-                      </widget>
-                      <packing>
-                        <property name="Position">0</property>
-                        <property name="AutoSize">True</property>
-                        <property name="Expand">False</property>
-                        <property name="Fill">False</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <widget class="Gtk.Entry" id="directorybox">
-                        <property name="MemberName" />
-                        <property name="CanFocus">True</property>
-                        <property name="IsEditable">True</property>
-                        <property name="InvisibleChar">●</property>
-                      </widget>
-                      <packing>
-                        <property name="Position">1</property>
-                        <property name="AutoSize">True</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <widget class="Gtk.FileChooserButton" id="folderchooserbutton">
-                        <property name="MemberName" />
-                        <property name="Title" translatable="yes">Select A Folder</property>
-                        <property name="Action">SelectFolder</property>
-                        <signal name="SelectionChanged" handler="OnFolderchooserbuttonSelectionChanged" />
+                        <property name="SingleLineMode">True</property>
                       </widget>
                       <packing>
                         <property name="PackType">End</property>
-                        <property name="Position">2</property>
+                        <property name="Position">1</property>
                         <property name="AutoSize">True</property>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
                       </packing>
                     </child>
                   </widget>
@@ -138,13 +152,13 @@
                 <child>
                   <widget class="Gtk.HBox" id="hbox3">
                     <property name="MemberName" />
-                    <property name="Homogeneous">True</property>
                     <property name="BorderWidth">2</property>
                     <child>
                       <widget class="Gtk.Label" id="label4">
                         <property name="MemberName" />
                         <property name="LabelProp" translatable="yes">Interval (seconds)</property>
                         <property name="Justify">Right</property>
+                        <property name="SingleLineMode">True</property>
                       </widget>
                       <packing>
                         <property name="Position">0</property>
@@ -154,20 +168,26 @@
                       </packing>
                     </child>
                     <child>
-                      <widget class="Gtk.Entry" id="intervalbox">
+                      <widget class="Gtk.SpinButton" id="intervalbox">
                         <property name="MemberName" />
+                        <property name="WidthRequest">60</property>
                         <property name="CanFocus">True</property>
-                        <property name="Text" translatable="yes">300</property>
-                        <property name="IsEditable">True</property>
-                        <property name="InvisibleChar">●</property>
+                        <property name="Lower">1</property>
+                        <property name="Upper">86400</property>
+                        <property name="PageIncrement">1</property>
+                        <property name="PageSize">30</property>
+                        <property name="StepIncrement">1</property>
+                        <property name="ClimbRate">1</property>
+                        <property name="Numeric">True</property>
+                        <property name="Value">1</property>
                       </widget>
                       <packing>
+                        <property name="PackType">End</property>
                         <property name="Position">1</property>
                         <property name="AutoSize">True</property>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
                       </packing>
-                    </child>
-                    <child>
-                      <placeholder />
                     </child>
                   </widget>
                   <packing>
